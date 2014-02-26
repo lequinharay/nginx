@@ -21,9 +21,6 @@ events {
 }
 
 http {
-  server {
-    listen  <%= node['nginx']['port'] %>;
-  }
   <% if node.recipe?('nginx::naxsi_module') %>
   include       <%= node['nginx']['dir'] %>/naxsi_core.rules;
   <% end %>
