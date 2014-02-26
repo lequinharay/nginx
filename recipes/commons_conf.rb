@@ -28,6 +28,15 @@ template 'nginx.conf' do
   notifies :reload, 'service[nginx]'
 end
 
+template 'default.conf' do
+  path "#{node['nginx']['dir']}/conf.d/default.conf"
+  source 'conf.d/nginx.conf.erb'
+  owner 'root'
+  grtoup 'root'
+  mode '0644'
+  notifies :reload, 'service[nginx]'
+end
+
 template "#{node['nginx']['dir']}/sites-available/default" do
   source 'default-site.erb'
   owner  'root'
